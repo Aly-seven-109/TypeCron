@@ -102,10 +102,6 @@
     body.light-theme .bg-black\/40 {
       background-color: #e2e8f0 !important;
     }
-    body.light-theme #appIconWrap {
-      background: #ffffff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    }
     body.light-theme .hero-ver-badge {
       background-color: #e0e7ff !important;
       color: #3730a3 !important;
@@ -124,10 +120,10 @@
     <!-- Header Bar -->
     <header class="flex items-center justify-between pt-2 pb-4">
       <div class="flex items-center gap-3">
-        <!-- সিক্রেট স্পট: লোগোতে লং-প্রেস (১ সেকেন্ড) বা ৩ বার ক্লিক করলে লগইন বক্স আসবে -->
-        <div id="navLogoWrap" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center font-extrabold text-white text-base shadow-md overflow-hidden cursor-pointer select-none active:scale-95 transition">
-          <span id="navLogoFallback">T</span>
-          <img id="navLogoImg" class="w-full h-full object-cover hidden" alt="Web Logo">
+        <!-- Secret Spot: Logo te long-press ba 3 bar click -->
+        <div id="navLogoWrap" class="w-10 h-10 rounded-2xl flex items-center justify-center font-extrabold text-white text-base overflow-hidden cursor-pointer select-none active:scale-95 transition bg-transparent">
+          <span id="navLogoFallback" class="w-full h-full flex items-center justify-center bg-gradient-to-tr from-indigo-600 to-blue-500 shadow-md rounded-2xl">T</span>
+          <img id="navLogoImg" class="w-full h-full object-contain hidden" alt="Web Logo">
         </div>
         <div>
           <div class="flex items-center gap-1.5">
@@ -158,13 +154,13 @@
     </header>
 
     <!-- Main Content -->
-    <main class="space-y-5 my-auto py-2">
+    <main class="space-y-4 my-auto py-2">
 
-      <!-- App Card Box -->
+      <!-- 1. App Card Box -->
       <div class="glass-card rounded-3xl p-5 flex items-center gap-4 shadow-xl">
-        <div id="appIconWrap" class="w-[72px] h-[72px] rounded-2xl bg-gradient-to-tr from-slate-900 to-indigo-950 flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
-          <span id="appIconFallback" class="text-3xl font-extrabold text-indigo-400">F</span>
-          <img id="appIconImg" class="w-full h-full object-cover hidden" alt="App Icon">
+        <div id="appIconWrap" class="w-[72px] h-[72px] rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0 bg-transparent">
+          <span id="appIconFallback" class="w-full h-full flex items-center justify-center bg-gradient-to-tr from-slate-900 to-indigo-950 text-3xl font-extrabold text-indigo-400 rounded-2xl shadow-md">F</span>
+          <img id="appIconImg" class="w-full h-full object-contain hidden" alt="App Icon">
         </div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
@@ -175,7 +171,7 @@
         </div>
       </div>
 
-      <!-- Quick Metrics Grid -->
+      <!-- 2. Quick Metrics Grid (Size, OS, Users) -->
       <div class="grid grid-cols-3 gap-2">
         <div class="glass-card rounded-2xl py-2.5 px-2 text-center">
           <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Size</span>
@@ -191,7 +187,15 @@
         </div>
       </div>
 
-      <!-- YouTube Showcase Frame -->
+      <!-- 3. Download Button (App View Sheet-er thik porer ongshote) -->
+      <div>
+        <button id="downloadBtn" onclick="handleDownload(event)" type="button" class="w-full glow-btn text-white py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2.5 font-bold text-sm tracking-wide cursor-pointer transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span id="downloadBtnText">Download APK</span>
+        </button>
+      </div>
+
+      <!-- 4. YouTube Showcase Frame -->
       <div id="videoSection" class="glass-card rounded-2xl p-2.5 space-y-2">
         <div class="flex items-center justify-between px-1">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -204,13 +208,13 @@
         </div>
       </div>
 
-      <!-- App Screenshots Slider -->
+      <!-- 5. App Screenshots Slider -->
       <div id="screenshotsSection" class="space-y-2">
         <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1 block">In-App Preview</span>
         <div id="screenshotsCarousel" class="flex gap-2.5 overflow-x-auto no-scrollbar py-0.5"></div>
       </div>
 
-      <!-- Changelog Card -->
+      <!-- 6. Changelog Card -->
       <div class="glass-card rounded-2xl p-4 space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-300">What's New</span>
@@ -219,16 +223,33 @@
         <ul id="changelogList" class="space-y-1.5 text-xs text-slate-300"></ul>
       </div>
 
+      <!-- 7. Conditional Social Community Links -->
+      <div id="socialLinksSection" class="glass-card rounded-2xl p-3 text-center space-y-2">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">Join Our Community</span>
+        <div class="flex items-center justify-center gap-3" id="socialIconsWrap">
+          <!-- Telegram -->
+          <a id="socTelegram" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/20 flex items-center justify-center text-sky-400 transition active:scale-95">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.718-1.542 6.55-2.235 9.549-.293 1.267-.935 1.488-1.554.896l-3.565-2.63-1.718 1.656c-.19.19-.35.35-.717.35l.256-3.633 6.613-5.975c.288-.256-.063-.398-.445-.143l-8.174 5.148-3.523-1.1c-.766-.24-.781-.766.16-1.134l13.766-5.308c.638-.23 1.196.155.571 1.722z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a id="socYoutube" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/20 flex items-center justify-center text-red-400 transition active:scale-95">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a id="socInstagram" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-pink-500/15 hover:bg-pink-500/25 border border-pink-500/20 flex items-center justify-center text-pink-400 transition active:scale-95">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- Custom / Website Link -->
+          <a id="socCustom" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/20 flex items-center justify-center text-indigo-400 transition active:scale-95">
+            <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          </a>
+        </div>
+      </div>
+
     </main>
 
-    <!-- Safe Download Button Footer -->
+    <!-- Footer -->
     <footer class="pt-3">
-      <button id="downloadBtn" onclick="handleDownload(event)" type="button" class="w-full glow-btn text-white py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2.5 font-bold text-sm tracking-wide cursor-pointer transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-        <span id="downloadBtnText">Download APK</span>
-      </button>
-      
-      <!-- ফুটার ডাবল ট্যাপে লগইন বক্স আসবে -->
       <p id="secretFooterTrigger" class="text-[10px] text-center text-slate-500 mt-2 select-none cursor-pointer py-1">
         © 2026 <span id="footerWebName">TypeCron</span>. Clean & Safe Package.
       </p>
@@ -297,12 +318,13 @@
       </button>
     </div>
 
-    <!-- Segmented Tabs -->
-    <div class="grid grid-cols-5 gap-1 bg-black/40 p-1 rounded-xl my-3 text-[10px] font-bold text-center">
+    <!-- Segmented Tabs (Clean 6 Tabs) -->
+    <div class="grid grid-cols-6 gap-1 bg-black/40 p-1 rounded-xl my-3 text-[10px] font-bold text-center">
       <button onclick="switchTab('tabApp')" id="btn-tabApp" class="py-1.5 rounded-lg bg-indigo-600 text-white">App</button>
       <button onclick="switchTab('tabWeb')" id="btn-tabWeb" class="py-1.5 rounded-lg text-slate-400">Web</button>
       <button onclick="switchTab('tabMedia')" id="btn-tabMedia" class="py-1.5 rounded-lg text-slate-400">Media</button>
       <button onclick="switchTab('tabVideo')" id="btn-tabVideo" class="py-1.5 rounded-lg text-slate-400">Video</button>
+      <button onclick="switchTab('tabLinks')" id="btn-tabLinks" class="py-1.5 rounded-lg text-slate-400">Links</button>
       <button onclick="switchTab('tabSecurity')" id="btn-tabSecurity" class="py-1.5 rounded-lg text-slate-400">Security</button>
     </div>
 
@@ -391,16 +413,16 @@
         <div class="grid grid-cols-2 gap-2">
           <div class="admin-box rounded-2xl p-3 text-center space-y-2">
             <span class="text-[10px] font-bold text-slate-300 block">Web Logo</span>
-            <div id="prevWebLogo" class="w-12 h-12 rounded-2xl bg-black/50 mx-auto overflow-hidden flex items-center justify-center text-[10px] text-slate-500">None</div>
+            <div id="prevWebLogo" class="w-12 h-12 rounded-xl border border-dashed border-white/20 mx-auto overflow-hidden flex items-center justify-center text-[10px] text-slate-500 bg-transparent">None</div>
             <label class="block bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/20 text-[10px] font-semibold py-1.5 rounded-lg cursor-pointer">
-              Upload <input type="file" accept="image/*" class="hidden" onchange="uploadSingleImg(this, 'websiteLogo')">
+              Upload <input type="file" accept="image/png, image/webp, image/*" class="hidden" onchange="uploadSingleImg(this, 'websiteLogo')">
             </label>
           </div>
           <div class="admin-box rounded-2xl p-3 text-center space-y-2">
             <span class="text-[10px] font-bold text-slate-300 block">App Icon</span>
-            <div id="prevAppLogo" class="w-12 h-12 rounded-2xl bg-black/50 mx-auto overflow-hidden flex items-center justify-center text-[10px] text-slate-500">None</div>
+            <div id="prevAppLogo" class="w-12 h-12 rounded-xl border border-dashed border-white/20 mx-auto overflow-hidden flex items-center justify-center text-[10px] text-slate-500 bg-transparent">None</div>
             <label class="block bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/20 text-[10px] font-semibold py-1.5 rounded-lg cursor-pointer">
-              Upload <input type="file" accept="image/*" class="hidden" onchange="uploadSingleImg(this, 'appLogo')">
+              Upload <input type="file" accept="image/png, image/webp, image/*" class="hidden" onchange="uploadSingleImg(this, 'appLogo')">
             </label>
           </div>
         </div>
@@ -421,11 +443,34 @@
         <div class="admin-box rounded-2xl p-3.5 space-y-2">
           <label class="text-[10px] uppercase font-bold text-indigo-400 tracking-wider block">YouTube Link or Embed Code</label>
           <input type="text" id="admYtUrl" placeholder="https://youtube.com/watch?v=... or <iframe>...</iframe>" class="field-input w-full p-2 rounded-lg text-xs font-mono">
-          <p class="text-[10px] text-slate-500">Paste standard link, shorts link, or entire iframe embed code.</p>
         </div>
       </div>
 
-      <!-- Tab 5: Security -->
+      <!-- Tab 5: Social Media Links -->
+      <div id="tabLinks" class="tab-pane space-y-3 hidden">
+        <div class="admin-box rounded-2xl p-3.5 space-y-2.5">
+          <span class="text-[10px] uppercase font-bold text-indigo-400 tracking-wider">Social Media Community Links</span>
+          <p class="text-[10px] text-slate-500">Kono link faka rakhle sheti website theke auto hide hoye jabe.</p>
+          <div>
+            <label class="text-[10px] text-slate-400">Telegram Channel / Group Link</label>
+            <input type="text" id="admTelegram" placeholder="https://t.me/..." class="field-input w-full p-2 rounded-lg text-xs font-mono">
+          </div>
+          <div>
+            <label class="text-[10px] text-slate-400">YouTube Channel Link</label>
+            <input type="text" id="admYoutubeChannel" placeholder="https://youtube.com/@..." class="field-input w-full p-2 rounded-lg text-xs font-mono">
+          </div>
+          <div>
+            <label class="text-[10px] text-slate-400">Instagram Profile Link</label>
+            <input type="text" id="admInstagram" placeholder="https://instagram.com/..." class="field-input w-full p-2 rounded-lg text-xs font-mono">
+          </div>
+          <div>
+            <label class="text-[10px] text-slate-400">Website / Custom Community Link</label>
+            <input type="text" id="admCustomLink" placeholder="https://..." class="field-input w-full p-2 rounded-lg text-xs font-mono">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 6: Security -->
       <div id="tabSecurity" class="tab-pane space-y-3 hidden">
         <div class="admin-box rounded-2xl p-3.5 space-y-3">
           <span class="text-[10px] uppercase font-bold text-indigo-400 tracking-wider">Admin Login Credentials</span>
@@ -484,6 +529,10 @@
       websiteLogo: "",
       appLogo: "",
       youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      telegramUrl: "",
+      youtubeChannelUrl: "",
+      instagramUrl: "",
+      customUrl: "",
       screenshots: [
         "https://images.unsplash.com/photo-1616469829941-c7200edec809?w=300&q=80",
         "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&q=80"
@@ -507,15 +556,11 @@
       try { appData = { ...defaultData, ...JSON.parse(cached) }; } catch(e){}
     }
 
-    // অল-ইন-ওয়ান ইউটিউব আইডি এক্সট্রাক্টর
     function extractYouTubeId(input) {
       if (!input) return null;
       input = input.trim();
-
       const iframeSrcMatch = input.match(/src=["'](.*?)["']/);
-      if (iframeSrcMatch && iframeSrcMatch[1]) {
-        input = iframeSrcMatch[1];
-      }
+      if (iframeSrcMatch && iframeSrcMatch[1]) input = iframeSrcMatch[1];
 
       const embedMatch = input.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/);
       if (embedMatch && embedMatch[1]) return embedMatch[1];
@@ -530,15 +575,12 @@
       if (watchMatch && watchMatch[1]) return watchMatch[1];
 
       if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
-
       return null;
     }
 
-    // Google Drive Link কনভার্টার
     function formatDirectDownloadUrl(url) {
       if (!url) return '';
       url = url.trim();
-
       let match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
       if (match && match[1]) {
         return `https://drive.usercontent.google.com/download?id=${match[1]}&export=download&confirm=t`;
@@ -547,7 +589,6 @@
       if (match && match[1]) {
         return `https://drive.usercontent.google.com/download?id=${match[1]}&export=download&confirm=t`;
       }
-
       return url;
     }
 
@@ -565,9 +606,7 @@
         } else {
           db.collection("portal_data").doc("auth").set(authCredentials);
         }
-      }, (err) => {
-        console.log("Auth listen fallback active");
-      });
+      }, () => {});
     }
     listenAuth();
 
@@ -606,7 +645,7 @@
         password: p
       }).then(() => {
         authCredentials = { username: u, password: p };
-        alert("✨ Successfully saved to Firebase! You can now log in.");
+        alert("Successfully saved to Firebase! You can now log in.");
         toggleSetupMode(false);
         document.getElementById('userInput').value = u;
         document.getElementById('passInput').value = p;
@@ -631,7 +670,7 @@
         password: p
       }).then(() => {
         authCredentials = { username: u, password: p };
-        alert("✨ Admin Credentials updated successfully!");
+        alert("Admin Credentials updated successfully!");
       }).catch(err => {
         alert("Updated locally! Cloud error: " + err.message);
         authCredentials = { username: u, password: p };
@@ -706,8 +745,25 @@
           canvas.width = width;
           canvas.height = height;
           const ctx = canvas.getContext('2d');
+          
+          ctx.clearRect(0, 0, width, height);
           ctx.drawImage(img, 0, 0, width, height);
-          callback(canvas.toDataURL('image/jpeg', quality));
+          
+          try {
+            const imgData = ctx.getImageData(0, 0, width, height);
+            const data = imgData.data;
+            for (let i = 0; i < data.length; i += 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              if (r < 25 && g < 25 && b < 25) {
+                data[i + 3] = 0;
+              }
+            }
+            ctx.putImageData(imgData, 0, 0);
+          } catch(e) {}
+          
+          callback(canvas.toDataURL('image/png'));
         };
       };
     }
@@ -834,6 +890,56 @@
       document.getElementById('statDownloads').textContent = appData.downloadCount || defaultData.downloadCount;
       document.getElementById('changelogBadge').textContent = appData.version || defaultData.version;
 
+      // ================= CONDITIONAL SOCIAL MEDIA LINKS =================
+      let visibleSocialCount = 0;
+
+      // Telegram
+      const tgEl = document.getElementById('socTelegram');
+      if (appData.telegramUrl && appData.telegramUrl.trim() !== '' && appData.telegramUrl.trim() !== '#') {
+        tgEl.href = appData.telegramUrl.trim();
+        tgEl.classList.remove('hidden');
+        visibleSocialCount++;
+      } else {
+        tgEl.classList.add('hidden');
+      }
+
+      // YouTube
+      const ytEl = document.getElementById('socYoutube');
+      if (appData.youtubeChannelUrl && appData.youtubeChannelUrl.trim() !== '' && appData.youtubeChannelUrl.trim() !== '#') {
+        ytEl.href = appData.youtubeChannelUrl.trim();
+        ytEl.classList.remove('hidden');
+        visibleSocialCount++;
+      } else {
+        ytEl.classList.add('hidden');
+      }
+
+      // Instagram
+      const igEl = document.getElementById('socInstagram');
+      if (appData.instagramUrl && appData.instagramUrl.trim() !== '' && appData.instagramUrl.trim() !== '#') {
+        igEl.href = appData.instagramUrl.trim();
+        igEl.classList.remove('hidden');
+        visibleSocialCount++;
+      } else {
+        igEl.classList.add('hidden');
+      }
+
+      // Custom Link
+      const custEl = document.getElementById('socCustom');
+      if (appData.customUrl && appData.customUrl.trim() !== '' && appData.customUrl.trim() !== '#') {
+        custEl.href = appData.customUrl.trim();
+        custEl.classList.remove('hidden');
+        visibleSocialCount++;
+      } else {
+        custEl.classList.add('hidden');
+      }
+
+      const socialSection = document.getElementById('socialLinksSection');
+      if (visibleSocialCount === 0) {
+        socialSection.classList.add('hidden');
+      } else {
+        socialSection.classList.remove('hidden');
+      }
+
       const navLogoImg = document.getElementById('navLogoImg');
       const navLogoFallback = document.getElementById('navLogoFallback');
       if (appData.websiteLogo) {
@@ -858,7 +964,7 @@
         appIconFallback.classList.remove('hidden');
       }
 
-      // ভিডিও প্লেয়ার
+      // Video Player
       const ytId = extractYouTubeId(appData.youtubeUrl);
       const videoSection = document.getElementById('videoSection');
       if (ytId) {
@@ -902,8 +1008,13 @@
       document.getElementById('admChangelog').value = (appData.changelog || []).join('\n');
       document.getElementById('admYtUrl').value = appData.youtubeUrl || '';
 
-      if (appData.websiteLogo) document.getElementById('prevWebLogo').innerHTML = `<img src="${appData.websiteLogo}" class="w-full h-full object-cover">`;
-      if (appData.appLogo) document.getElementById('prevAppLogo').innerHTML = `<img src="${appData.appLogo}" class="w-full h-full object-cover">`;
+      document.getElementById('admTelegram').value = appData.telegramUrl || '';
+      document.getElementById('admYoutubeChannel').value = appData.youtubeChannelUrl || '';
+      document.getElementById('admInstagram').value = appData.instagramUrl || '';
+      document.getElementById('admCustomLink').value = appData.customUrl || '';
+
+      if (appData.websiteLogo) document.getElementById('prevWebLogo').innerHTML = `<img src="${appData.websiteLogo}" class="w-full h-full object-contain">`;
+      if (appData.appLogo) document.getElementById('prevAppLogo').innerHTML = `<img src="${appData.appLogo}" class="w-full h-full object-contain">`;
       renderScreenshotThumbnails();
     }
 
@@ -929,7 +1040,7 @@
     function uploadSingleImg(input, target) {
       const file = input.files[0];
       if (!file) return;
-      compressImage(file, 200, 200, 0.8, (compressedBase64) => {
+      compressImage(file, 200, 200, 1.0, (compressedBase64) => {
         appData[target] = compressedBase64;
         populateAdminForm();
       });
@@ -956,6 +1067,11 @@
       appData.description = document.getElementById('admDescription').value.trim() || defaultData.description;
       appData.youtubeUrl = document.getElementById('admYtUrl').value.trim() || defaultData.youtubeUrl;
       
+      appData.telegramUrl = document.getElementById('admTelegram').value.trim();
+      appData.youtubeChannelUrl = document.getElementById('admYoutubeChannel').value.trim();
+      appData.instagramUrl = document.getElementById('admInstagram').value.trim();
+      appData.customUrl = document.getElementById('admCustomLink').value.trim();
+
       const cl = document.getElementById('admChangelog').value.split('\n').filter(l => l.trim().length > 0);
       appData.changelog = cl.length > 0 ? cl : defaultData.changelog;
 
@@ -964,12 +1080,11 @@
 
       db.collection("portal_data").doc("config").set(appData)
         .then(() => {
-          alert("✨ সফলভাবে সেভ ও ফায়ারবেসে সিঙ্ক হয়েছে!");
+          alert("✨ Saved & synced to live website!");
         })
         .catch(err => alert("Firestore save error: " + err.message));
     }
 
-    // ১০০% ঠিক করা APK ডাউনলোড মেকানিজম
     function handleDownload(e) {
       if (e) { e.preventDefault(); e.stopPropagation(); }
       let rawUrl = (appData.apkUrl || '').trim();
