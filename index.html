@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title id="pageTitle">Seven</title>
+  <title id="pageTitle">TypeCron</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
   
@@ -126,12 +126,12 @@
       <div class="flex items-center gap-3">
         <!-- সিক্রেট স্পট: লোগোতে লং-প্রেস (১ সেকেন্ড) বা ৩ বার ক্লিক করলে লগইন বক্স আসবে -->
         <div id="navLogoWrap" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center font-extrabold text-white text-base shadow-md overflow-hidden cursor-pointer select-none active:scale-95 transition">
-          <span id="navLogoFallback">7</span>
+          <span id="navLogoFallback">T</span>
           <img id="navLogoImg" class="w-full h-full object-cover hidden" alt="Web Logo">
         </div>
         <div>
           <div class="flex items-center gap-1.5">
-            <h1 id="navWebName" class="font-extrabold text-sm text-white tracking-tight">Seven</h1>
+            <h1 id="navWebName" class="font-extrabold text-sm text-white tracking-tight">TypeCron</h1>
             <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">Verified</span>
           </div>
           <p id="navWebTagline" class="text-[11px] text-slate-400 font-medium leading-none mt-0.5">Next-Gen Network</p>
@@ -163,12 +163,12 @@
       <!-- App Card Box -->
       <div class="glass-card rounded-3xl p-5 flex items-center gap-4 shadow-xl">
         <div id="appIconWrap" class="w-[72px] h-[72px] rounded-2xl bg-gradient-to-tr from-slate-900 to-indigo-950 flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
-          <span id="appIconFallback" class="text-3xl font-extrabold text-indigo-400">7</span>
+          <span id="appIconFallback" class="text-3xl font-extrabold text-indigo-400">F</span>
           <img id="appIconImg" class="w-full h-full object-cover hidden" alt="App Icon">
         </div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <h2 id="heroAppTitle" class="text-lg font-extrabold text-white truncate">Seven Beta</h2>
+            <h2 id="heroAppTitle" class="text-lg font-extrabold text-white truncate">FigeMate</h2>
             <span id="heroVersionPill" class="hero-ver-badge text-[10px] font-mono px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">v2.4.0</span>
           </div>
           <p id="appDescription" class="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">Fast reels, crystal clear chat & media sharing.</p>
@@ -230,7 +230,7 @@
       
       <!-- ফুটার ডাবল ট্যাপে লগইন বক্স আসবে -->
       <p id="secretFooterTrigger" class="text-[10px] text-center text-slate-500 mt-2 select-none cursor-pointer py-1">
-        © 2026 <span id="footerWebName">Seven</span>. Clean & Safe Package.
+        © 2026 <span id="footerWebName">TypeCron</span>. Clean & Safe Package.
       </p>
     </footer>
 
@@ -240,9 +240,9 @@
   <!-- ================= AUTH MODAL ================= -->
   <div id="authOverlay" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-6">
     <div class="admin-box w-full max-w-xs p-6 rounded-3xl text-center space-y-4 shadow-2xl">
-      <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center mx-auto text-xl font-bold">7</div>
+      <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center mx-auto text-xl font-bold">T</div>
       <div>
-        <h2 id="authModalTitle" class="text-base font-bold text-white">Seven Studio</h2>
+        <h2 id="authModalTitle" class="text-base font-bold text-white">TypeCron Studio</h2>
         <p id="authModalSubtitle" class="text-xs text-slate-400">Enter Admin Credentials</p>
       </div>
 
@@ -353,7 +353,7 @@
           </div>
 
           <div class="space-y-1">
-            <span class="text-[10px] text-slate-400">Or Paste Google Drive / Mediafire Link</span>
+            <span class="text-[10px] text-slate-400">Or Paste Google Drive / Direct APK Link</span>
             <input type="text" id="admApkUrl" placeholder="https://drive.google.com/file/d/..." class="field-input w-full p-2 rounded-lg text-xs font-mono text-indigo-400">
           </div>
         </div>
@@ -472,9 +472,9 @@
     const storage = firebase.storage();
 
     const defaultData = {
-      websiteName: "Seven",
+      websiteName: "TypeCron",
       websiteTagline: "Next-Gen Network",
-      appName: "Seven Beta",
+      appName: "FigeMate",
       version: "v2.4.0",
       fileSize: "28.4 MB",
       osSupport: "Android 8+",
@@ -502,7 +502,7 @@
       password: "Aly732201"
     };
 
-    const cached = localStorage.getItem('seven_portal_data');
+    const cached = localStorage.getItem('typecron_portal_data');
     if (cached) {
       try { appData = { ...defaultData, ...JSON.parse(cached) }; } catch(e){}
     }
@@ -534,7 +534,7 @@
       return null;
     }
 
-    // Google Drive Link কনভার্টার (confirm=t সহ আসল APK নামানোর জন্য)
+    // Google Drive Link কনভার্টার
     function formatDirectDownloadUrl(url) {
       if (!url) return '';
       url = url.trim();
@@ -587,7 +587,7 @@
       } else {
         setupSection.classList.add('hidden');
         loginSection.classList.remove('hidden');
-        modalTitle.textContent = "Seven Studio";
+        modalTitle.textContent = "TypeCron Studio";
         modalSub.textContent = "Enter Admin Credentials";
       }
     }
@@ -656,7 +656,7 @@
     }
 
     function initTheme() {
-      const savedTheme = localStorage.getItem('seven_theme') || 'dark';
+      const savedTheme = localStorage.getItem('typecron_theme') || 'dark';
       if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
         document.getElementById('moonIcon').classList.add('hidden');
@@ -671,11 +671,11 @@
     function toggleTheme() {
       const isLight = document.body.classList.toggle('light-theme');
       if (isLight) {
-        localStorage.setItem('seven_theme', 'light');
+        localStorage.setItem('typecron_theme', 'light');
         document.getElementById('moonIcon').classList.add('hidden');
         document.getElementById('sunIcon').classList.remove('hidden');
       } else {
-        localStorage.setItem('seven_theme', 'dark');
+        localStorage.setItem('typecron_theme', 'dark');
         document.getElementById('moonIcon').classList.remove('hidden');
         document.getElementById('sunIcon').classList.add('hidden');
       }
@@ -822,7 +822,7 @@
     }
 
     function renderUI() {
-      document.getElementById('pageTitle').textContent = appData.appName || defaultData.appName;
+      document.getElementById('pageTitle').textContent = appData.websiteName || defaultData.websiteName;
       document.getElementById('navWebName').textContent = appData.websiteName || defaultData.websiteName;
       document.getElementById('footerWebName').textContent = appData.websiteName || defaultData.websiteName;
       document.getElementById('navWebTagline').textContent = appData.websiteTagline || defaultData.websiteTagline;
@@ -841,7 +841,7 @@
         navLogoImg.classList.remove('hidden');
         navLogoFallback.classList.add('hidden');
       } else {
-        navLogoFallback.textContent = (appData.websiteName || '7').charAt(0);
+        navLogoFallback.textContent = (appData.websiteName || 'T').charAt(0);
         navLogoImg.classList.add('hidden');
         navLogoFallback.classList.remove('hidden');
       }
@@ -853,7 +853,7 @@
         appIconImg.classList.remove('hidden');
         appIconFallback.classList.add('hidden');
       } else {
-        appIconFallback.textContent = (appData.appName || '7').charAt(0);
+        appIconFallback.textContent = (appData.appName || 'F').charAt(0);
         appIconImg.classList.add('hidden');
         appIconFallback.classList.remove('hidden');
       }
@@ -959,7 +959,7 @@
       const cl = document.getElementById('admChangelog').value.split('\n').filter(l => l.trim().length > 0);
       appData.changelog = cl.length > 0 ? cl : defaultData.changelog;
 
-      localStorage.setItem('seven_portal_data', JSON.stringify(appData));
+      localStorage.setItem('typecron_portal_data', JSON.stringify(appData));
       renderUI();
 
       db.collection("portal_data").doc("config").set(appData)
@@ -969,7 +969,7 @@
         .catch(err => alert("Firestore save error: " + err.message));
     }
 
-    // ১০০% ঠিক করা APK ডাউনলোড মেকানিজম (HTML ফাইল নামার ঝামেলা সম্পূর্ণ মুক্ত)
+    // ১০০% ঠিক করা APK ডাউনলোড মেকানিজম
     function handleDownload(e) {
       if (e) { e.preventDefault(); e.stopPropagation(); }
       let rawUrl = (appData.apkUrl || '').trim();
@@ -984,7 +984,6 @@
       const oldText = btn.textContent;
       btn.textContent = "Starting Download...";
 
-      // গুগল ড্রাইভ লিঙ্ক হলে ব্রাউজারকে ডিরেক্ট হ্যান্ডেল করতে দেওয়া হয় যাতে HTML এরর না নামে
       const isDrive = directDownloadUrl.includes('drive.google.com') || directDownloadUrl.includes('drive.usercontent.google.com');
 
       if (isDrive) {
@@ -992,7 +991,7 @@
       } else {
         const link = document.createElement('a');
         link.href = directDownloadUrl;
-        link.setAttribute('download', `${(appData.appName || 'App').replace(/\s+/g, '_')}_${appData.version || 'v1'}.apk`);
+        link.setAttribute('download', `${(appData.appName || 'FigeMate').replace(/\s+/g, '_')}_${appData.version || 'v1'}.apk`);
         link.target = '_blank';
         document.body.appendChild(link);
         link.click();
@@ -1021,7 +1020,7 @@
       if (doc.exists) {
         const cloudData = doc.data();
         appData = { ...defaultData, ...cloudData };
-        localStorage.setItem('seven_portal_data', JSON.stringify(appData));
+        localStorage.setItem('typecron_portal_data', JSON.stringify(appData));
         renderUI();
       }
     });
