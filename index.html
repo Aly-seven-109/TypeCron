@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title id="pageTitle">TypeCron</title>
+  
+  <!-- Chrome ও মোবাইল ব্রাউজারের টপবার কালার মেটা ট্যাগ -->
+  <meta name="theme-color" id="themeColorMeta" content="#06080e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
   
@@ -102,6 +108,10 @@
     body.light-theme .bg-black\/40 {
       background-color: #e2e8f0 !important;
     }
+    body.light-theme #appIconWrap {
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
     body.light-theme .hero-ver-badge {
       background-color: #e0e7ff !important;
       color: #3730a3 !important;
@@ -171,7 +181,7 @@
         </div>
       </div>
 
-      <!-- 2. Quick Metrics Grid (Size, OS, Users) -->
+      <!-- 2. Quick Metrics Grid -->
       <div class="grid grid-cols-3 gap-2">
         <div class="glass-card rounded-2xl py-2.5 px-2 text-center">
           <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Size</span>
@@ -187,7 +197,7 @@
         </div>
       </div>
 
-      <!-- 3. Download Button (App View Sheet-er thik porer ongshote) -->
+      <!-- 3. Download Button (App View-এর নিচে) -->
       <div>
         <button id="downloadBtn" onclick="handleDownload(event)" type="button" class="w-full glow-btn text-white py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2.5 font-bold text-sm tracking-wide cursor-pointer transition">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -364,7 +374,7 @@
 
           <div class="flex items-center gap-2">
             <label class="flex-1 bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 text-indigo-300 py-2 px-3 rounded-xl text-xs font-semibold text-center cursor-pointer transition flex items-center justify-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
               <span>Upload APK from Device (Recommended)</span>
               <input type="file" id="apkFileInput" accept=".apk" class="hidden" onchange="uploadApkFile(this)">
             </label>
@@ -694,16 +704,26 @@
       }
     }
 
+    // টপবার ও থিম টগল হ্যান্ডলার
+    function updateBrowserTopBarColor(isLight) {
+      const meta = document.getElementById('themeColorMeta');
+      if (meta) {
+        meta.setAttribute('content', isLight ? '#f1f5f9' : '#06080e');
+      }
+    }
+
     function initTheme() {
       const savedTheme = localStorage.getItem('typecron_theme') || 'dark';
       if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
         document.getElementById('moonIcon').classList.add('hidden');
         document.getElementById('sunIcon').classList.remove('hidden');
+        updateBrowserTopBarColor(true);
       } else {
         document.body.classList.remove('light-theme');
         document.getElementById('moonIcon').classList.remove('hidden');
         document.getElementById('sunIcon').classList.add('hidden');
+        updateBrowserTopBarColor(false);
       }
     }
 
@@ -713,10 +733,12 @@
         localStorage.setItem('typecron_theme', 'light');
         document.getElementById('moonIcon').classList.add('hidden');
         document.getElementById('sunIcon').classList.remove('hidden');
+        updateBrowserTopBarColor(true);
       } else {
         localStorage.setItem('typecron_theme', 'dark');
         document.getElementById('moonIcon').classList.remove('hidden');
         document.getElementById('sunIcon').classList.add('hidden');
+        updateBrowserTopBarColor(false);
       }
     }
     initTheme();
